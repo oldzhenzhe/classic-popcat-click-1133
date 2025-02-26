@@ -69,6 +69,14 @@
             background-position: bottom;
             background-repeat: no-repeat;
         }
+        /*貓咪狀態*/
+          #p{
+            background-image: url('imgs/p.png')
+          }
+         #op{
+            background-image: url('imgs/op.png')
+         }
+
 
     </style>
 </head>
@@ -78,5 +86,32 @@
     <img class="title" src="imgs/popcat.svg" alt="POPCAT">
     <div class="cat-img" id="p">0</div>
 </div>
+<script>
+    // 1.計算器初始化
+    let count = 0;
+    // 2.計數器累加
+    function add() {
+        count++;
+    }
+    // 當滑鼠按下切換張嘴圖片
+    // 註冊滑鼠按下的事件
+    document.addEventListener('mousedown', function () {
+        // 計數器累加
+        add();
+        // 更新畫面上的點擊數
+        document.querySelector('.cat-img').textContent = count;
+        // 切換張嘴圖片
+        document.getElementById('op').style.backgroundImage = "url('imgs/op.png')";
+    });
+     // 放開便恢復原來圖片
+    document.addEventListener('mouseup', function () {
+        document.getElementById('p').style.backgroundImage = "url('imgs/p.png')";
+    });    //當滑鼠按下，播放 pops/pop1.mp3
+    document.addEventListener('mousedown', function () {
+        new Audio('pops/pop1.mp3').play();
+    });
+
+
+</script>
 </body>
 </html>
