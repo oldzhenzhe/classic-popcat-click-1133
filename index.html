@@ -31,7 +31,6 @@
             color: white;
             font-size: 80px;
             -webkit-text-stroke: 3px black;
-
         }
         /*文字 div 背景圖片 用 id 設定imgs/p.png 圖片靠下 填滿容器 不重複  */
         #p {
@@ -64,20 +63,19 @@
             max-width: 800px;
         }
         /*新增文字 div 背景圖片 用 id 設定 imgs/op.png*/
-        #p {
+        #op {
             background-image: url('imgs/op.png');
             background-size: contain;
             background-position: bottom;
             background-repeat: no-repeat;
         }
         /*貓咪狀態*/
-          #p{
-            background-image: url('imgs/p.png')
-          }
-         #op{
-            background-image: url('imgs/op.png')
-         }
-
+        #p {
+            background-image: url('imgs/p.png');
+        }
+        #op {
+            background-image: url('imgs/op.png');
+        }
 
     </style>
 </head>
@@ -87,38 +85,54 @@
     <img class="title" src="imgs/popcat.svg" alt="POPCAT">
     <div class="cat-img" id="p">0</div>
 </div>
+
 <script>
     // 1.計算器初始化
     let count = 0;
+
     // 2.計數器累加
     function add() {
         count++;
     }
-    //將初始化計數器顯示到 HTML 元素，用 id 抓取
+
+    // 取得catImg元素
     let catImg = document.getElementById('p');
 
+    // 播放音效
+    const audio = new Audio('pops/pop1.mp3');
 
-
-
-    // 當滑鼠按下切換張嘴圖片
-    // 註冊滑鼠按下的事件
-    document.addEventListener('mousedown', function () {
-        // 計數器累加
-        add();
-        // 更新畫面上的點擊數
-        catImg.textContent = count;
-        // 切換張嘴圖片
-        catImg.id='op';
-    });
-     // 放開便恢復原來圖片
-    document.addEventListener('mouseup', function () {
-        catImg.id='p';} );
-
-      //當滑鼠按下，播放 pops/pop1.mp3
-        let audio = new Audio('pops/pop1.mp3');
+    // 播放音效函式
+    function playSound() {
+        audio.currentTime = 0;  // 確保每次按下時從頭播放
         audio.play();
+    }
 
+    // 當滑鼠按下時切換圖片並播放音效
+    document.addEventListener('mousedown', function () {
+        add();
+        catImg.textContent = count;
+        catImg.id = 'op';  // 切換到打開嘴巴的圖片
+        playSound();
+    });
 
+    // 當滑鼠放開時恢復原來圖片
+    document.addEventListener('mouseup', function () {
+        catImg.id = 'p';  // 切換回閉嘴的圖片
+    });
+
+    // 當鍵盤按下時
+    document.addEventListener('keydown', function () {
+        add();
+        catImg.textContent = count;
+        catImg.id = 'op';  // 切換到打開嘴巴的圖片
+        playSound();
+    });
+
+    // 當鍵盤放開時恢復原來圖片
+    document.addEventListener('keyup', function () {
+        catImg.id = 'p';  // 切換回閉嘴的圖片
+    });
 </script>
+
 </body>
 </html>
