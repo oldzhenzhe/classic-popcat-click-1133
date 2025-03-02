@@ -2,136 +2,74 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>POPCAT CLASSIC</title>
+    <title>bili bili</title>
     <style>
-        /* 新增容器樣式，flex方向要垂直 */
-        /*背景顏色 容器樣式 背景顏色 #bdaa90; */
-
-        .container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            height: 100vh;
-            background-color: #bdaa90;
-        }
-
-        /* 標題 box 寬度80% 上方間距 2em */
-        /*標題圖片寬度 100% */
-        /*標題圖片下方間距 1em */
-        .title {
-            width: 80%;
-            margin-top: 2em;
-        }
-        /* 文字 box 寬度100%  */
-        /*文字樣式 文字置中 文字白色 大小80px 邊框3px 黑色 */
-        /*文字上下間距 2em */
-        .cat-img {
-            width: 100%;
-            text-align: center;
-            color: white;
-            font-size: 80px;
-            -webkit-text-stroke: 3px black;
-        }
-        /*文字 div 背景圖片 用 id 設定imgs/p.png 圖片靠下 填滿容器 不重複  */
-        #p {
-            background-image: url('imgs/p.png');
-            background-size: contain;
-            background-position: bottom;
-            background-repeat: no-repeat;
-        }
-        /*body box 編距為0*/
-        /*字型 sans-serif*/
+        /*將back ground.png設為背景 圖片靠上 填滿容*/
         body {
+            background-image: url('imgs/back ground.png');
+            background-size: cover;
+            background-position: top;
             margin: 0;
             font-family: sans-serif;
         }
 
-        /*文字 div 排版填滿剩餘空間*/
-        .cat-img {
-            flex: 1;
+        /*將loading-bilibili.gif放置在畫面中央 大小縮成一半*/
+        .loading-bilibili {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 50%;
         }
-        /*防止文字被選取*/
-        .cat-img {
-            user-select: none;
-        }
-        /*標題 box 最大寬度 600px*/
-        .title {
-            max-width: 600px;
-        }
-        /*文字 box 最大寬度 800px*/
-        .cat-img {
-            max-width: 800px;
-        }
-        /*新增文字 div 背景圖片 用 id 設定 imgs/op.png*/
-        #op {
-            background-image: url('imgs/op.png');
-            background-size: contain;
-            background-position: bottom;
-            background-repeat: no-repeat;
-        }
-        /*貓咪狀態*/
-        #p {
-            background-image: url('imgs/p.png');
-        }
-        #op {
-            background-image: url('imgs/op.png');
-        }
+
 
     </style>
 </head>
 <body>
-<!-- 新增容器包裹標題圖片與點擊數 -->
-<div class="container">
-    <img class="title" src="imgs/popcat.svg" alt="POPCAT">
-    <div class="cat-img" id="p">0</div>
-</div>
+
+<!-- 將GIF放置於畫面中央 -->
+<img src="imgs/loading-bilibili.gif" alt="loading-bilibili" class="loading-bilibili">
 
 <script>
-    // 1.計算器初始化
-    let count = 0;
 
-    // 2.計數器累加
-    function add() {
-        count++;
-    }
-
-    // 取得catImg元素
-    let catImg = document.getElementById('p');
-
-    // 播放音效
-    const audio = new Audio('pops/pop1.mp3');
-
-    // 播放音效函式
-    function playSound() {
-        audio.currentTime = 0;  // 確保每次按下時從頭播放
-        audio.play();
-    }
-
-    // 當滑鼠按下時切換圖片並播放音效
+    //縮小loading.gif一半的大小 當滑鼠按下時播放loading.gif在正中下方15公分處 1.5秒後結束
     document.addEventListener('mousedown', function () {
-        add();
-        catImg.textContent = count;
-        catImg.id = 'op';  // 切換到打開嘴巴的圖片
-        playSound();
+        var loading = document.createElement('img');
+        loading.src = 'imgs/loading.gif';
+        loading.style.position = 'absolute';
+        loading.style.top = '80%';
+        loading.style.left = '50%';
+        loading.style.transform = 'translate(-50%, -50%)';
+        loading.style.width = '50%';
+        document.body.appendChild(loading);
+        loading.style.width = '20%';
+        setTimeout(function () {
+            document.body.removeChild(loading);
+        }, 1750);
     });
 
-    // 當滑鼠放開時恢復原來圖片
-    document.addEventListener('mouseup', function () {
-        catImg.id = 'p';  // 切換回閉嘴的圖片
-    });
 
-    // 當鍵盤按下時
-    document.addEventListener('keydown', function () {
-        add();
-        catImg.textContent = count;
-        catImg.id = 'op';  // 切換到打開嘴巴的圖片
-        playSound();
-    });
 
-    // 當鍵盤放開時恢復原來圖片
-    document.addEventListener('keyup', function () {
-        catImg.id = 'p';  // 切換回閉嘴的圖片
-    });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 </script>
 
 </body>
