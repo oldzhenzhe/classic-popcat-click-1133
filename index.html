@@ -47,7 +47,20 @@
             document.body.removeChild(loading);
         }, 1750);
     });
-
+    document.addEventListener('keydown', function () {
+        var loading = document.createElement('img');
+        loading.src = 'imgs/loading.gif';
+        loading.style.position = 'absolute';
+        loading.style.top = '80%';
+        loading.style.left = '50%';
+        loading.style.transform = 'translate(-50%, -50%)';
+        loading.style.width = '50%';
+        document.body.appendChild(loading);
+        loading.style.width = '20%';
+        setTimeout(function () {
+            document.body.removeChild(loading);
+        }, 1750);
+    });
 
 
 
